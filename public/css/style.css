@@ -1,24 +1,57 @@
+/* ===== Base Layout ===== */
 body {
-  font-family: "Kalam", cursive !important;
+  font-family: "Roboto", sans-serif;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background-color: #fffefc;
 }
+
 .container {
   flex: 1;
 }
+
+/* ===== Navbar ===== */
 .navbar {
-  height: 5em;
-  background-color: antiquewhite;
+  background-color: #f4f0ec;
+  border-bottom: 1px solid #ddd;
 }
+
 .fa-compass {
   color: red;
   font-size: 2rem;
 }
-/* important BOOTSTAP KO OVERWRITE KRNA */
-.nav-link {
-  color: #222222 !important;
+
+/* Overwrite Bootstrap nav link color */
+.nav-link,
+.navbar-brand {
+  color: #222 !important;
 }
+
+.navbar .btn {
+  white-space: nowrap;
+}
+
+/* ===== Footer ===== */
+.f-info {
+  text-align: center;
+  padding: 1rem 0;
+  background-color: #ebebeb;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.f-info-links,
+.f-info-socials,
+.f-info-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
 .f-info-links a {
   text-decoration: none;
   color: #222;
@@ -28,96 +61,124 @@ body {
   text-decoration: underline;
 }
 
-.f-info-links,
-.f-info-socials,
-.f-info-brand {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.f-info {
-  text-align: center;
-  height: 8 rem;
-  display: flex;
-  background-color: #ebebeb;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: space-evenly;
-}
-
 .f-info-socials i {
   font-size: 1.8rem;
   margin-right: 1rem;
 }
 
+/* ===== Listing Cards ===== */
 .listing-card {
-  border: none !important;
-  margin-bottom: 2rem;
-}
-.card-img-top {
-  border-radius: 1rem !important;
-  width: 100% !important;
-  object-fit: cover !important;
-}
-.card-body {
-  padding: 0 !important;
-}
-.card-text p {
-  font-weight: 400 !important;
-}
-.listing-link {
-  text-decoration: none;
-}
-/* CARD EFFECT */
-.card-img-overlay {
-  opacity: 0;
-}
+    border: none;
+    margin-bottom: 2rem;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  }
+  .listing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  }
+  .listing-link {
+    text-decoration: none;
+    color: inherit; /* Inherit text color from parent */
+  }
+  .card-img-top {
+    border-radius: 1rem;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+  .card-body {
+    padding: 1rem 0.25rem; /* Adjust padding */
+  }
+  .card-title {
+    font-weight: 600;
+  }
 .card-img-overlay:hover {
   opacity: 0.4;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.5);
 }
-.add-btn {
-  background-color: red !important;
-  border: none !important;
-}
-/* EDIT PAGE */
+
+/* ===== Buttons ===== */
+.add-btn,
 .edit-btn {
   background-color: red !important;
   border: none !important;
+  color: white !important;
 }
-/* SHOW PAGE */
-.show-img {
-  height: 30vh;
-}
+
 .btns {
   display: flex;
+  gap: 0.5rem;
 }
+
+/* ===== Show Page Image ===== */
+.show-img {
+  height: 30vh;
+  object-fit: cover;
+  width: 100%;
+  border-radius: 0.5rem;
+}
+
 .show-card {
   padding: 0;
-  padding-right: 0;
 }
 
-/* MAP */
-
+/* ===== Map ===== */
 #map {
-height: 400px;
-width: 80vh;
+  height: 400px;
+  width: 80vw;
+  border-radius: 0.5rem;
 }
-/* Base styles */
+
 .map-container {
   margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
 }
-/* Media query for mobile devices */
+.edit-form-image {
+        width: 200px;
+        height: 125px;
+        object-fit: cover;
+        border-radius: 0.5rem;
+        border: 1px solid #dee2e6;
+    }
+
+/* ===== Mobile Responsiveness ===== */
 @media (max-width: 767px) {
-  .map-container {
-    margin-left: 0;
-    margin-right: 0;
+  #map {
+    height: 200px;
+    width: 95vw;
   }
 
-  #map {
-    height: 200px; /* Adjust as needed for smaller screens */
+  .navbar-collapse {
+    background-color: #f4f0ec;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    transition: max-height 0.3s ease;
+  }
+
+  .navbar-nav .nav-link {
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+    width: 100%;
+  }
+
+  .navbar .btn {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+
+  form.d-flex {
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  form.d-flex input {
+    width: 100%;
+  }
+
+  form.d-flex button {
+    width: 100%;
   }
 }
-

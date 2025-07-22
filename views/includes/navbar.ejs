@@ -1,25 +1,67 @@
-<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav"> 
-          <a class="nav-link" href="/listings">Explore</a>
-        </div>
-        <div class="navbar-nav ms-auto"> 
-          <a class="nav-link" href="/listings/new">Add new Listing</a>
-          <% if (!currUser) { %>
-            <a class="nav-link" href="/signup"><b>Sign up</b></a>
-            <a class="nav-link" href="/login"><b>Log in</b></a>
-          <% } %>
-          <% if (currUser) { %>
-            <a class="nav-link" href="/logout">Logout</a>
-          <% } %>
+<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top py-2">
+  <div class="container-fluid">
+    <!-- Brand -->
+    <a class="navbar-brand d-flex align-items-center gap-2 fs-4" href="/listings">
+      <i class="fa-regular fa-compass fa-lg"></i>
+      <span class="fw-bold">TravelTales</span>
+    </a>
 
+    <!-- Toggler -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
+    <!-- Collapsible Content -->
+    <div class="collapse navbar-collapse pt-3 pt-md-0" id="navbarNavAltMarkup">
+      <!-- Left Links -->
+      <div class="navbar-nav me-auto">
+        <a class="nav-link fs-5" href="/listings"></a>
+      </div>
+
+      <!-- Embedded Search Form -->
+      <form class="d-flex me-2" role="search" action="/listings/search" method="GET">
+        <div class="input-group">
+          <input
+            type="search"
+            class="form-control"
+            placeholder="Search places..."
+            aria-label="Search"
+            name="query"
+            required
+          />
+          <button class="btn btn-outline-secondary" type="submit">
+            <i class="fa fa-search"></i>
+          </button>
         </div>
+      </form>
+
+      <!-- Right Buttons -->
+      <div class="navbar-nav d-flex align-items-center gap-1">
+        <a class="btn btn-outline-primary" href="/listings/new">
+          <i class="fa-solid fa-plus"></i> List Your Place
+        </a>
+        <% if (!currUser) { %>
+          <a class="btn btn-outline-success d-flex align-items-center gap-1" href="/signup">
+            <i class="fa-solid fa-user-plus"></i> Sign up
+          </a>
+          <a class="btn btn-outline-primary d-flex align-items-center gap-1" href="/login">
+            <i class="fa-solid fa-right-to-bracket"></i> Log in
+          </a>
+        <% } %>
+        <% if (currUser) { %>
+          <a class="btn btn-outline-danger d-flex align-items-center text-center gap-1" href="/logout">
+            <i class="fa-solid fa-right-from-bracket"></i>                        Logout
+          </a>
+        <% } %>
       </div>
     </div>
-  </nav>
+  </div>
+</nav>

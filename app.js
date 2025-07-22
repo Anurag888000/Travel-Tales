@@ -109,7 +109,7 @@ app.use("/", userRouter);
 // CUSTOM ERROR
 // ************
 app.all("*", (req, res, next) => {
-  next(new ExpressError(404, "Page NO Found!!"));
+  next(new ExpressError(404, "Page NOT Found!!"));
 });
 
 app.use((err, req, res, next) => {

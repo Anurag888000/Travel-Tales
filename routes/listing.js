@@ -3,14 +3,12 @@ const router = express.Router();
 const wrapAsync = require("../utils/wrapAsync.js");
 const Listing = require("../Models/listing.js");
 const { isLoggedIn, isOwner, validateListing } = require("../middleware.js");
-// Multer enctype="multipart/form-data" is data ko use krne le require kiya
 const multer = require("multer");
 const { storage } = require("../cloudConfig.js");
 const upload = multer({ storage });
 
 const listingController = require("../controllers/listings.js");
 
-// router.route ye isliye use common path ek me ho jaye
 // ************
 // INDEX ROUTE
 // CREATE ROUTE
@@ -20,7 +18,6 @@ router
   .get(wrapAsync(listingController.index))
   .post(
     isLoggedIn,
-    // validateListing,
     upload.single("listing[image]"),
     wrapAsync(listingController.createListing)
   );
@@ -28,8 +25,32 @@ router
 // **********
 // NEW ROUTE
 // **********
-// Agar iske show route ke niche rakhege to id se collide krega
 router.get("/new", isLoggedIn, wrapAsync(listingController.renderNewForm));
+
+// *****************************************
+// ✅ ADD THIS SEARCH ROUTE HERE
+// *****************************************
+router.get(
+  "/search",
+  wrapAsync(async (req, res) => {
+    const { query } = req.query;
+    try {
+      const allListing = await Listing.find({
+        $or: [
+          { title: { $regex: query, $options: "i" } },
+          { country: { $regex: query, $options: "i" } },
+          { description: { $regex: query, $options: "i" } },
+        ],
+      });
+      res.render("listings/index.ejs", { allListing });
+    } catch (e) {
+      req.flash("error", "Cannot find listings for that search.");
+      res.redirect("/listings");
+    }
+  })
+);
+
+// *****************************************
 
 // ***********
 // SHOW ROUTE
@@ -46,6 +67,7 @@ router
     wrapAsync(listingController.updateListing)
   )
   .delete(isLoggedIn, isOwner, wrapAsync(listingController.destoryListing));
+
 // ************
 // EDIT ROUTE
 // ************
