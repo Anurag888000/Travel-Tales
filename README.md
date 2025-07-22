@@ -8,7 +8,7 @@ A full-stack **travel listing platform** where users can **list, edit, explore, 
 
 👉 [Visit Travel-Tales on Render](https://travel-tales-vh6r.onrender.com/)
 
-![Travel-Tales Demo](./demo.png)
+![Travel-Tales Demo](Demo/demo.png)
 
 ---
 
